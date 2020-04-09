@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { createBottomTabNavigator } from "react-navigation-tabs";
 import { enableScreens } from "react-native-screens";
 
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
@@ -55,14 +54,7 @@ class ModalScreen extends React.Component {
 const AppNavigator = createStackNavigator(
     {
         Main: {
-            screen: createBottomTabNavigator(
-                {
-                    Home: { screen: HomeScreen, path: "" },
-                },
-                {
-                    initialRouteName: "Home",
-                }
-            ),
+            screen: HomeScreen,
             navigationOptions: () => {
                 return {
                     header: null,
