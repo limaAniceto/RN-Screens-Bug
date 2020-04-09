@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import { enableScreens } from "react-native-screens";
 
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
@@ -39,7 +40,7 @@ class ModalScreen extends React.Component {
                     justifyContent: "center",
                 }}
             >
-                <Text>Modal Screen</Text>
+                <Text style={{ color: "red" }}>Modal Screen</Text>
 
                 <TouchableHighlight
                     onPress={() => this.props.navigation.goBack()}
@@ -53,16 +54,34 @@ class ModalScreen extends React.Component {
 
 const AppNavigator = createStackNavigator(
     {
-        Home: {
-            screen: HomeScreen,
+        Main: {
+            screen: createBottomTabNavigator(
+                {
+                    Home: { screen: HomeScreen, path: "" },
+                },
+                {
+                    initialRouteName: "Home",
+                }
+            ),
+            navigationOptions: () => {
+                return {
+                    header: null,
+                };
+            },
         },
         Modal: {
             screen: ModalScreen,
+            navigationOptions: () => {
+                return {
+                    header: null,
+                };
+            },
         },
     },
     {
         headerMode: "none",
         mode: "modal",
+        transparentCard: true,
         cardStyle: {
             opacity: 1,
         },
